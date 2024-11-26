@@ -71,10 +71,26 @@ def upsert_to_pinecone(json_entries, dataset_name):
     for i, (embedding, json_entry) in enumerate(zip(embeddings, json_entries)):
         index.upsert([(f"{dataset_name.lower().replace(' ', '_')}_entry_{i}", embedding, {"data": json_entry})])
 
-upsert_to_pinecone(admissions_json, "Admissions Dataset")
-upsert_to_pinecone(medication_json, "Medication Dataset")
-upsert_to_pinecone(results_json, "Results Dataset")
-upsert_to_pinecone(process_items_json, "Process Items Dataset")
-upsert_to_pinecone(procedure_order_items_json, "Procedure Order Items Dataset")
+# upsert_to_pinecone(admissions_json, "Admissions Dataset")
+# upsert_to_pinecone(medication_json, "Medication Dataset")
+# upsert_to_pinecone(results_json, "Results Dataset")
+# upsert_to_pinecone(process_items_json, "Process Items Dataset")
+# upsert_to_pinecone(procedure_order_items_json, "Procedure Order Items Dataset")
+#
+# print("Data ingestion to Pinecone completed successfully.")
+def query_pinecone(query_text, top_k=5):
+    # Generate embedding for the query
+    query_embedding = model.encode(query_text).tolist()
 
-print("Data ingestion to Pinecone completed successfully.")
+    # Query Pinecone for similar entries
+    query_response = index.query(queries=[query_embedding], top_k=top_k, include_values=False, include_metadata=True)
+
+    # Extract and print results
+    for match in query_response['matches']:
+        print(f"Score: {match['score']}")
+        print(f"Data: {json.loads(match['metadata']['data'])}\n")
+
+
+# Example usage of querying Pinecone
+query_text = "How many admissions were urgent?"
+query_pinecone(query_text)

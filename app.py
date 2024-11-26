@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-
+# Load datasets
 datasets = {
     'procedures': pd.read_csv('Amsterdam_dataset/Procedure_Order_Items_Dataset.csv'),
     'medications': pd.read_csv('Amsterdam_dataset/Medication_Dataset.csv'),
@@ -17,7 +17,7 @@ datasets = {
     'admissions': pd.read_csv('Amsterdam_dataset/Admissions_Dataset.csv')
 }
 
-
+# Initialize Groq client
 client = Groq(api_key=os.getenv('GROQ_API_KEY'))
 
 
