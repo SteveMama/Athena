@@ -3,11 +3,11 @@ import json
 import os
 
 input_directory = "Amsterdam_dataset"
-admissions_df = pd.read_csv(os.path.join(input_directory, "Admissions_Dataset.csv"))
-medication_df = pd.read_csv(os.path.join(input_directory, "Medication_Dataset.csv"))
-results_df = pd.read_csv(os.path.join(input_directory, "Results_Dataset.csv"))
-process_items_df = pd.read_csv(os.path.join(input_directory, "Process_Items_Dataset.csv"))
-procedure_order_items_df = pd.read_csv(os.path.join(input_directory, "Procedure_Order_Items_Dataset.csv"))
+admissions_df = pd.read_csv(os.path.join(input_directory, "Admissions_Dataset.csv"), nrows=10)
+medication_df = pd.read_csv(os.path.join(input_directory, "Medication_Dataset.csv"), nrows=10)
+results_df = pd.read_csv(os.path.join(input_directory, "Results_Dataset.csv"), nrows=10)
+process_items_df = pd.read_csv(os.path.join(input_directory, "Process_Items_Dataset.csv"), nrows=10)
+procedure_order_items_df = pd.read_csv(os.path.join(input_directory, "Procedure_Order_Items_Dataset.csv"), nrows=10)
 
 def dataframe_to_json(df, dataset_name, output_directory):
     json_entries = []
