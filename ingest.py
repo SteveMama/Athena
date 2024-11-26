@@ -79,10 +79,8 @@ def upsert_to_pinecone(json_entries, dataset_name):
 #
 # print("Data ingestion to Pinecone completed successfully.")
 def query_pinecone(query_text, top_k=5):
-    # Generate embedding for the query
     query_embedding = model.encode(query_text).tolist()
 
-    # Query Pinecone for similar entries
     query_response = index.query(queries=[query_embedding], top_k=top_k, include_values=False, include_metadata=True)
 
     # Extract and print results

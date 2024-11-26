@@ -41,7 +41,6 @@ def answer_question(question):
     answer = chat_completion.choices[0].message.content
     return answer
 
-# Example usage
 if __name__ == "__main__":
     user_question = "which patients received Amoxicillin?"
     response = answer_question(user_question)
