@@ -19,6 +19,7 @@ for json_file in json_files:
 
 def answer_question(question):
     context = "\n".join([json.dumps(entry) for entry in json_data])
+    #print(context)
 
     chat_completion = client.chat.completions.create(
         messages=[
@@ -42,6 +43,6 @@ def answer_question(question):
     return answer
 
 if __name__ == "__main__":
-    user_question = "which patients received Amoxicillin?"
+    user_question = "Are there any patients that require urgent attention for their CT scan?"
     response = answer_question(user_question)
     print(response)
